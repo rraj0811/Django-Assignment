@@ -1,0 +1,43 @@
+{% extends "cars/base.html" %}
+
+
+{% block title%}
+Welcome
+{% endblock %}
+
+
+{% block content %}
+
+            {% if messages %}
+            {% for msg in messages %}
+            <div class="alert alert-{{ msg.tags }}">
+            {{ msg }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <h1 id="layout">Welcome to Car Rental Service</h1>
+                
+        
+        
+{%endblock%}
+
+
+{%block side%}
+    <img src="https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=600" width="50%" height="50%" class="image">
+    <main role="main" class="container">
+        <div class="row">
+  
+          {% if messages %}
+            {% for msg in messages %}
+            <div class="alert alert-{{ msg.tags }}">
+              {{ msg }}
+            </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </main>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

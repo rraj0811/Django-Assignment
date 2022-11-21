@@ -1,0 +1,33 @@
+{%extends "Cars/base.html"%}
+{%load crispy_forms_tags%}
+{%block content%}
+
+<div class="mb-4">
+<form method="POST" class="mx-4 my-5 mb-5 container" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <div class="text-light">
+        <h3 class="my-4">Hi {{user.username}}!</h3>
+        <hr>
+        <!-- <h5>Details of the Car that you want book</h5> -->
+        <legend class="border-bottom mb-4 ">Details of the Car</legend>
+        <br>
+        
+        <p style="font-weight: bold;"> CarName - {{car_details.CarName}} </p>
+        <p style="font-weight: bold;"> ModelName - {{car_details.ModelName}} </p>
+        <p style="font-weight: bold;"> CarNumber - {{car_details.CarNumber}} </p>
+        <p style="font-weight: bold;"> CostPerDay - {{car_details.CostPerDay}} </p>
+    </div>
+    <legend class="border-bottom mb-4 text-primary">Please provide the address to book your Car</legend>
+       {{form|crispy}}
+    </fieldset>
+    <div class="form-group my-3 mb-3">
+        <button class="btn btn-success" type="submit">Submit</button>
+    </div>
+</form>
+</div>
+{%endblock content%}
+
+
+{% block side%}
+{%endblock%}

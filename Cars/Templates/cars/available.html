@@ -1,0 +1,72 @@
+{% extends "cars/base.html" %}
+
+{%block side%}
+{%endblock%}
+
+{% block content %}
+
+       
+    <div class="available"> 
+
+            <div>
+                
+                <h1 id="heading">Available Cars</h1>
+                <form method="GET" action="/search" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query">
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        <br>
+        <br>
+      
+
+        <table class="table table-striped" id="table">
+            <tr>
+                <th>Car ID</th>
+                <th>Car Name</th>
+                <th>Model Name</th>
+                <th>Car Number</th>
+                <th>Features</th>
+                <th>Is Available</th>
+                <th>Cost Per Day</th>
+                <th>Car Image</th>
+                <th>Other</th>
+            </tr>
+            {% for post in cars%}
+                <tr>
+                    <td>{{post.id}}</td>
+                    <td>{{post.CarName}}</td>
+                    <td>{{post.ModelName}}</td>
+                    <td>{{post.CarNumber}}</td>
+                    <td>{{post.Features}}</td>
+                    <td>{{post.IsAvailable}}</td>
+                    <td>{{post.CostPerDay}}</td>
+                    <td>
+                        <!-- <img  src="/media/{{ post.CarImage }}" alt="photo" width="70" height="80"> -->
+                        <!-- <p>{{post.CarImage}}</p> -->
+                        <a href="/media/{{ post.CarImage}}">
+                            <img src="/media/{{ post.CarImage }}" width="70" height="80">
+                        </a> 
+                    </td>
+                    {% if post.IsAvailable == 'Yes' or post.IsAvailable == 'yes' %}
+                    <td>
+                        <a class="btn btn-danger" id="book" href="/book/{{post.id}}">Book</a>
+                    </td>
+                    {% else %}
+                    <td>
+                        <button class="btn btn-danger" disabled id="book" href="#">Book</button>
+                    </td>
+
+                    {% endif %}
+                </tr>
+
+            {%endfor%}
+        </table>
+
+        
+
+        <a href="{% url 'index' %}" class="return">Return to home</a>
+        
+    </div>
+
+{% endblock content%}
